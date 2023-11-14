@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daylight Saving Time Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Is it Daylight Saving Time?</h1>
+
+    <div id="result"></div>
+
+    <script>
+        // JavaScript to determine if it's daylight saving time
+        const isDaylightSavingTime = () => {
+            const now = new Date();
+            const januaryOffset = new Date(now.getFullYear(), 0, 1).getTimezoneOffset();
+            const julyOffset = new Date(now.getFullYear(), 6, 1).getTimezoneOffset();
+
+            return Math.max(januaryOffset, julyOffset) !== now.getTimezoneOffset();
+        };
+
+        // Display result on the webpage
+        const displayResult = () => {
+            const resultElement = document.getElementById('result');
+            const isDST = isDaylightSavingTime();
+
+            resultElement.textContent = isDST ? 'Yes, it\'s Daylight Saving Time.' : 'No, it\'s not Daylight Saving Time.';
+        };
+
+        // Call the function on page load
+        displayResult();
+    </script>
+
+</body>
+</html>
